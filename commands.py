@@ -6,8 +6,8 @@ from pytube import YouTube
 
 async def start(message: types.Message):
     chat_id = message.chat.id
-    await bot.send_message(chat_id, f'Привет {message.from_user.username}! Этот Бот предназначен для '
-                                    f'скачивания видео из YouTube! Отправь мне ссылку 📹')
+    await bot.send_message(chat_id, f'Привет <b>{message.from_user.username}</b>! Этот Бот предназначен для '
+                                    f'скачивания видео из YouTube! Отправь мне ссылку 📹', parse_mode='html')
 
 
 async def download_text(message: types.Message):
@@ -15,11 +15,10 @@ async def download_text(message: types.Message):
     yt = YouTube(url)
     chat_id = message.chat.id
     if message.text.startswith == 'https://www.youtube.com/' or 'https://youtu.be/':
-        await bot.send_message(chat_id, f"Начинаем загрузку {yt.title}", parse_mode='Markdown')
+        await bot.send_message(chat_id, f"Начинаем загрузку <b>{yt.title}</b>", parse_mode='html')
         await download_video(url, message, bot)
     else:
         await bot.send_message(chat_id, 'Вы ошиблись при вводе ссылки на видео, попробуйте еще раз! 🤨')
-
 
 async def download_video(url, message, bot):
     yt = YouTube(url)
